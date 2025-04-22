@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -98,7 +59,7 @@
     <header>
         <h1>Defit Afbil Fauzi</h1>
         <p>RT 03 RW 01, Desa Cabean, Kecamatan Sidomukti, Kota Salatiga, Provinsi Jawa Tengah</p>
-        <p>Email: defit@gmail.com | Telepon: +62 812-3456-7890</p>
+        <p>Email: defitafbilfauzii@gmail.com | Telepon: +62 878-4871-1503</p>
     </header>
 
     <div class="container">
@@ -111,6 +72,10 @@
             <li>Penggunaan Microsoft Office (Word, Excel, PowerPoint)</li>
             <li>Penggunaan alat berbasis AI untuk produktivitas</li>
             <li>Pemecahan masalah (problem solving) secara logis</li>
+        </ul>
+
+        <h2>Kelebihan</h2>
+        <ul>
             <li>Ketangguhan di bawah tekanan dalam situasi kerja cepat</li>
             <li>Kecepatan dan ketelitian dalam bekerja</li>
             <li>Semangat belajar teknologi baru</li>
@@ -122,7 +87,6 @@
         <p><strong>Magang – Customer Service, Indomedia</strong><br>
         Juli 2024 – Oktober 2024 | Salatiga, Jawa Tengah</p>
         <ul>
-            <li>Menangani 50+ keluhan dan permintaan pelanggan per hari dengan kesabaran, ketenangan, dan profesionalisme, mencapai tingkat kepuasan pelanggan 85%.</li>
             <li>Berbicara langsung dengan pelanggan untuk memberikan solusi cepat dan akurat, meningkatkan efisiensi pelayanan.</li>
             <li>Beradaptasi dan mempelajari sistem ticketing digital dengan cepat untuk memproses permintaan pelanggan secara teliti.</li>
             <li>Memecahkan masalah teknis pelanggan terkait layanan internet, berkolaborasi dengan tim teknis untuk solusi efektif.</li>
@@ -131,9 +95,6 @@
         <h2>Pendidikan</h2>
         <p><strong>SMK Teknik Komputer Jaringan dan Telekomunikasi, SMK Negeri 2 Salatiga</strong><br>
         2021 – 2024 | Salatiga, Jawa Tengah</p>
-        <ul>
-            <li>Nilai rata-rata: 85/100</li>
-        </ul>
 
         <h2>Sertifikasi</h2>
         <ul>
@@ -153,7 +114,7 @@
     </div>
 
     <footer>
-        <p>Kontak: defit@gmail.com | +62 812-3456-7890</p>
+        <p>Kontak: defitafbilfauzii@gmail.com | +62 878-4871-1503</p>
     </footer>
 </body>
 </html>
